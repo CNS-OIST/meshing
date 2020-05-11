@@ -1,4 +1,4 @@
-# Mewsh utility collections for neuron morphology reconstruction
+# Mesh utility collections for neuron morphology reconstruction
 
 ## A Quick Lookup Table: What tool should I use to open `.xxx` file?
 |Format|Content|View/Edit Tool|
