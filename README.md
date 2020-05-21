@@ -22,17 +22,17 @@ A collection of meshing utilities for neuron morphologies, developed by [the Com
 ### For SWC morphology
 * [SWCIntersectDetect](https://github.com/CNS-OIST/SWCIntersectDetect): Branch intersection detection for SWC/NEURON morphology.
     - Main Input: `.swc` morphology file
-    - Main Output: `.swc` morphology file where branch intersections are labelled using user-defined tag
+    - Main Output: `.swc` morphology file where branch intersections are labeled using user-defined tags
 * [SWCTetMesher](https://github.com/CNS-OIST/SWCTetMesher): Tetrehedral mesh generator from SWC morphology data.
     - Main Input: `.swc` morphology file
     - Main Output: `.mesh` tetrahedral mesh file of the morphology. (Optional: `.off` surface mesh of the morphology)
 
 ### For surface mesh morphology
-* [MultiCompMesher](https://github.com/CNS-OIST/MultiCompMesher): Multi-component mesh generation and labelling from watertight surface boundaries.
+* [MultiCompMesher](https://github.com/CNS-OIST/MultiCompMesher): Multi-component mesh generation and labeling from watertight surface boundaries.
     - Main Input: 
         1. `.off` watertight surface boundary meshes.
         2. user-defined text file with component signatures.
-    - Main Output: `.mesh` Tetrahedral mesh file of the morphology with labelled components.
+    - Main Output: `.mesh` Tetrahedral mesh file of the morphology with labeled components.
 
 ### For STEPS mesh annotation
 * [polyhedronROI](https://github.com/CNS-OIST/STEPS_PolyhedronROI): Create Region of Interest (ROIs) annotations in [STEPS](http://steps.sourceforge.net/) using watertight surface boundaries and labeling signatures.
@@ -53,19 +53,19 @@ point-diameter data.
     - Main Output: text-based file with watertight, manifold surface mesh of the morphology
 
 ### For surface mesh morphology
-* [GAMer](https://github.com/ctlee/gamer): surface mesh improvement library developed to condition surface meshes derived from noisy biological imaging data. Also provide tetrahedral mesh generation functionality using TetGen backend.
+* [GAMer](https://github.com/ctlee/gamer): surface mesh improvement library developed to condition surface meshes derived from noisy biological imaging data. Also provides tetrahedral mesh generation functionality using TetGen backend.
     - Main Input: surface mesh files
     - Main Output: repaired and optimized surface meshes
 * [Gmsh](http://gmsh.info/doc/texinfo/gmsh.html): Tetrahedral mesh generator from CAD geometry or surface boundaries.
     - Main Input: surface morphology file
     - Main Output: `.msh` tetrahedral mesh file, can also export to other formats
-* [TetGen](http://wias-berlin.de/software/tetgen/): Tetrahedral mesh generator from polyhedral  surface boundaries.
+* [TetGen](http://wias-berlin.de/software/tetgen/): Tetrahedral mesh generator from polyhedral surface boundaries.
     - Main Input: surface morphology file
     - Main Output: text-based tetrahedral mesh file
-* [TetWild](https://github.com/Yixin-Hu/TetWild): Robust Tetrahedral Meshing from polyhedral  surface boundaries.
+* [TetWild](https://github.com/Yixin-Hu/TetWild): Robust tetrahedral meshing from polyhedral surface boundaries.
     - Main Input: surface mesh file
     - Main Output: `gmsh` tetrahedral mesh.
-* [VolRoverN](https://cvcweb.oden.utexas.edu/cvcwp/software/volumerover-neuron/): Pipeline solution for neuron reconstruction from `RECONSTRUCT` series files to surface/volume mesh. Also provide automatic surface mesh repairing and optimization functionality.
+* [VolRoverN](https://cvcweb.oden.utexas.edu/cvcwp/software/volumerover-neuron/): Pipeline solution for neuron reconstruction from `RECONSTRUCT` series files to surface/volume mesh. Also provides automatic surface mesh repairing and optimization functionality.
     - Main Input: `RECONSTRUCT` series files, or `.off` surface mesh
     - Main Output: surface/volume meshes of the reconstruction
 
