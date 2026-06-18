@@ -72,9 +72,9 @@ point-diameter data.
 * [TetGen](http://wias-berlin.de/software/tetgen/): Tetrahedral mesh generator from polyhedral surface boundaries.
     - Main Input: surface morphology file
     - Main Output: text-based tetrahedral mesh file
-* [TetWild](https://github.com/Yixin-Hu/TetWild): Robust tetrahedral meshing from polyhedral surface boundaries.
-    - Main Input: surface mesh file
-    - Main Output: `gmsh` tetrahedral mesh.
+* [fTetWild](https://github.com/wildmeshing/fTetWild): Robust floating-point tetrahedral meshing from triangle surfaces / soups, tolerant of imperfect input (self-intersections, gaps) via a user-set envelope, with element-quality optimization. Supersedes the original [TetWild](https://github.com/Yixin-Hu/TetWild); Python bindings via the `wildmeshing` package.
+    - Main Input: surface mesh file (or triangle soup)
+    - Main Output: tetrahedral mesh (Gmsh `.msh` / medit `.mesh`).
 * [VolRoverN](https://cvcweb.oden.utexas.edu/cvcwp/software/volumerover-neuron/): Pipeline solution for neuron reconstruction from `RECONSTRUCT` series files to surface/volume mesh. Also provides automatic surface mesh repairing and optimization functionality.
     - Main Input: `RECONSTRUCT` series files, or `.off` surface mesh
     - Main Output: surface/volume meshes of the reconstruction
