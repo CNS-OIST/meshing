@@ -28,11 +28,21 @@ A collection of meshing utilities for neuron morphologies, developed by [the Com
     - Main Output: `.mesh` tetrahedral mesh file of the morphology. (Optional: `.off` surface mesh of the morphology)
 
 ### For surface mesh morphology
+* [CollisionResolver](https://github.com/CNS-OIST/CollisionResolver): Detect and resolve overlaps between watertight surface meshes by voxel ownership, so densely-packed segmented organelles become non-overlapping (gap-separated) and meshable. Also checks/repairs non-manifold inputs.
+    - Main Input: `.off` watertight surface meshes (possibly overlapping/non-manifold).
+    - Main Output: `.off` non-overlapping, gap-separated watertight surface meshes.
 * [MultiCompMesher](https://github.com/CNS-OIST/MultiCompMesher): Multi-component mesh generation and labeling from watertight surface boundaries.
     - Main Input: 
         1. `.off` watertight surface boundary meshes.
         2. user-defined text file with component signatures.
     - Main Output: `.mesh` Tetrahedral mesh file of the morphology with labeled components.
+
+### For STEPS tetrahedral meshing
+* [STEPSMeshPipeline](https://github.com/CNS-OIST/STEPSMeshPipeline): End-to-end pipeline turning segmented surfaces into a labelled tetrahedral mesh sized and validated to the STEPS mesh criteria (Hepburn et al. 2012). Resolves overlaps automatically (bundles CollisionResolver) and tetrahedralises (wraps MultiCompMesher), then exports Gmsh `.msh` and a mesh-quality report.
+    - Main Input: 
+        1. `.off` segmented surface boundary meshes (overlaps resolved on the fly).
+        2. reaction-diffusion parameters (rate `k`, diffusion `D`, concentration) for STEPS-criteria sizing — or typical neuroscience defaults.
+    - Main Output: Gmsh `.msh` labelled tetrahedral mesh meeting the STEPS size/shape criteria, plus a quality report (figures + verdict).
 
 ### For STEPS mesh annotation
 * [polyhedronROI](https://github.com/CNS-OIST/STEPS_PolyhedronROI): Create Region of Interest (ROIs) annotations in [STEPS](http://steps.sourceforge.net/) using watertight surface boundaries and labeling signatures.
