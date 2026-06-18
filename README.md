@@ -84,3 +84,11 @@ point-diameter data.
     - Main Input: a mesh file in any supported format
     - Main Output: the same mesh in another supported format (`meshio convert in.ext out.ext`)
 
+### Mesh processing & repair (Python libraries)
+General-purpose libraries for loading, analysing, repairing, and visualising
+meshes (rather than morphology-specific tools).
+* [trimesh](https://github.com/mikedh/trimesh): Triangle-mesh library — load/export many formats, watertightness & winding checks and repair (merge vertices, drop degenerate/duplicate faces, fix normals/winding, fill holes), voxelisation, ray/proximity queries, and booleans. (Used by CollisionResolver.)
+* [PyVista](https://github.com/pyvista/pyvista): Pythonic VTK interface for mesh processing, analysis, and 3D visualisation — clipping/slicing, collision detection, decimation, and plotting. (Used by CollisionResolver for collision detection and figures.)
+* [PyMeshFix](https://github.com/pyvista/pymeshfix): Python wrapper of MeshFix — repair non-manifold / non-watertight surface meshes (remove self-intersections and degeneracies, fill holes) into a clean watertight manifold.
+* [PyMeshLab](https://github.com/cnr-isti-vclab/PyMeshLab): Python bindings to [MeshLab](http://www.meshlab.net/) — extensive mesh filters including isotropic remeshing, cleaning, hole filling, and repair.
+
