@@ -79,3 +79,8 @@ point-diameter data.
     - Main Input: `RECONSTRUCT` series files, or `.off` surface mesh
     - Main Output: surface/volume meshes of the reconstruction
 
+### Mesh format conversion
+* [meshio](https://github.com/nschloe/meshio): Python library and command-line tool to read, write, and convert between many mesh formats — Gmsh `.msh`, medit `.mesh`, VTK/VTU, `.off`/`.obj`/`.stl`/`.ply`, Abaqus `.inp`, XDMF, and more. (Used by STEPSMeshPipeline for the `.mesh` → Gmsh `.msh` conversion.)
+    - Main Input: a mesh file in any supported format
+    - Main Output: the same mesh in another supported format (`meshio convert in.ext out.ext`)
+
