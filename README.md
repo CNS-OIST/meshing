@@ -31,18 +31,25 @@ A collection of meshing utilities for neuron morphologies, developed by [the Com
 * [CollisionResolver](https://github.com/CNS-OIST/CollisionResolver): Detect and resolve overlaps between watertight surface meshes by voxel ownership, so densely-packed segmented organelles become non-overlapping (gap-separated) and meshable. Also checks/repairs non-manifold inputs.
     - Main Input: `.off` watertight surface meshes (possibly overlapping/non-manifold).
     - Main Output: `.off` non-overlapping, gap-separated watertight surface meshes.
-* [MultiCompMesher](https://github.com/CNS-OIST/MultiCompMesher): Multi-component mesh generation and labeling from watertight surface boundaries.
+* [SubmeshRelocator](https://github.com/CNS-OIST/SubmeshRelocator): Relocate inner surface meshes that a gap-resolver leaves too close to their container or neighbours (UNMET) into a free pocket — by rigid move, a shape-preserving volume-matched surrogate, or splitting — instead of dropping them.
+    - Main Input: `.off` watertight surfaces + a gap report (e.g. from CollisionResolver).
+    - Main Output: repositioned `.off` surfaces that clear the gap (or a report of any that cannot be placed).
+* [MultiCompMesher](https://github.com/CNS-OIST/MultiCompMesher): Multi-component mesh generation and labeling from watertight surface boundaries, with local size-field refinement — `sphere` (geometric ball/shell, e.g. thin inter-compartment gaps) and a shape-conforming `surface` directive (refine near an arbitrary marker surface such as a synaptic active zone).
     - Main Input: 
         1. `.off` watertight surface boundary meshes.
         2. user-defined text file with component signatures.
+        3. (optional) a size-field file with `patch`/`component`/`sphere`/`surface` refinement directives.
     - Main Output: `.mesh` Tetrahedral mesh file of the morphology with labeled components.
 
 ### For STEPS tetrahedral meshing
-* [STEPSMeshPipeline](https://github.com/CNS-OIST/STEPSMeshPipeline): End-to-end pipeline turning segmented surfaces into a labelled tetrahedral mesh sized and validated to the STEPS mesh criteria (Hepburn et al. 2012). Resolves overlaps automatically (bundles CollisionResolver) and tetrahedralises (wraps MultiCompMesher), then exports Gmsh `.msh` and a mesh-quality report.
+* [STEPSMeshPipeline](https://github.com/CNS-OIST/STEPSMeshPipeline): End-to-end pipeline turning segmented surfaces into a labelled tetrahedral mesh sized and validated to the STEPS mesh criteria (Hepburn et al. 2012). Resolves overlaps automatically (bundles CollisionResolver), relocates too-close inner bodies (SubmeshRelocator), tetrahedralises (wraps MultiCompMesher), names compartments and membrane patches (Gmsh `$PhysicalNames`), and validates (STEPSMeshValidator).
     - Main Input: 
         1. `.off` segmented surface boundary meshes (overlaps resolved on the fly).
         2. reaction-diffusion parameters (rate `k`, diffusion `D`, concentration) for STEPS-criteria sizing — or typical neuroscience defaults.
-    - Main Output: Gmsh `.msh` labelled tetrahedral mesh meeting the STEPS size/shape criteria, plus a quality report (figures + verdict).
+    - Main Output: Gmsh `.msh` labelled tetrahedral mesh meeting the STEPS size/shape criteria (compartments/patches addressable by name), plus a quality report (figures + verdict).
+* [STEPSMeshValidator](https://github.com/CNS-OIST/STEPSMeshValidator): Validate a tetrahedral mesh (or check surface inputs) against the STEPS mesh criteria — size window, element shape (radius-edge, aspect ratio), compartment containment, and operator-splitting ζ — with a pass/fail verdict, histograms, and a recommended element size. Consumed as a submodule by STEPSMeshPipeline and CollisionResolver.
+    - Main Input: a Gmsh `.msh` mesh (or `.off` surface inputs), plus reaction-diffusion parameters.
+    - Main Output: a quality report (verdict + figures) flagging any criterion not met.
 
 ### For STEPS mesh annotation
 * [polyhedronROI](https://github.com/CNS-OIST/STEPS_PolyhedronROI): Create Region of Interest (ROIs) annotations in [STEPS](http://steps.sourceforge.net/) using watertight surface boundaries and labeling signatures.
